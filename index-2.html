@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>Edoardo Maira — Quantitative Finance & Data Analytics</title>
+<meta name="description" content="MSc Advanced Economics & Finance (CBS). Four end-to-end projects in econometrics, machine learning and behavioural finance — Stata, R, C++, Bloomberg.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{ color-scheme: light only; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;background:#FAFAF8}
+  body{background:#FAFAF8;color:#0E1512;font-family:'Inter',sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  a{color:inherit;text-decoration:none}
+
+  /* palette:
+     light surface  #FAFAF8 (text #0E1512)
+     dark surface   #0E1512 (text #F4F2EC)
+     accent green   #2E9E6F on dark, #1F6E4E on light
+  */
+  nav{position:sticky;top:0;z-index:50;background:rgba(250,250,248,.92);backdrop-filter:blur(12px);border-bottom:1px solid #E7E6DE}
+  .nav-in{max-width:1080px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Fraunces',serif;font-weight:600;font-size:19px;letter-spacing:-.01em;color:#0E1512}
+  .logo b{color:#1F6E4E}
+  .nav-links{display:flex;gap:26px;font-size:14px;color:#3A423E;align-items:center}
+  .nav-links a{transition:.15s}.nav-links a:hover{color:#1F6E4E}
+  .nav-cta{background:#0E1512;color:#FAFAF8;padding:9px 18px;border-radius:999px;font-size:13.5px;font-weight:500;transition:.18s}
+  .nav-cta:hover{background:#1F6E4E}
+  @media(max-width:720px){.nav-links{display:none}}
+
+  .hero{padding:112px 0 96px;text-align:center}
+  .kicker{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1F6E4E;font-weight:500;margin-bottom:22px}
+  .whisper{color:#8A8F8B;font-size:16px;max-width:600px;margin:0 auto 28px;line-height:1.7}
+  h1{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(40px,7vw,78px);line-height:1.04;letter-spacing:-.025em;color:#0E1512}
+  h1 em{font-style:italic;color:#1F6E4E}
+  .subline{font-size:clamp(16px,2.2vw,19px);color:#3A423E;margin-top:22px;max-width:660px;margin-left:auto;margin-right:auto}
+  .subline b{color:#0E1512;font-weight:600}
+  .identity{font-size:14.5px;color:#1F6E4E;font-weight:500;margin-top:20px;letter-spacing:.01em}
+  .hero-cta{margin-top:36px;display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  .btn{padding:13px 26px;border-radius:999px;font-size:14.5px;font-weight:500;transition:.18s;display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:none}
+  .btn.solid{background:#1F6E4E;color:#fff}
+  .btn.solid:hover{background:#185840;transform:translateY(-1px)}
+  .btn.line{border:1px solid #E7E6DE;background:#FFFFFF;color:#0E1512}
+  .btn.line:hover{border-color:#1F6E4E;color:#1F6E4E}
+
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+
+  section{padding:84px 0}
+  .center{text-align:center}
+  .sec-label{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:16px}
+
+  /* LIGHT section */
+  .light{background:#FAFAF8}
+  .light .sec-label{color:#1F6E4E}
+  .light .lead-h,.light h2{color:#0E1512}
+  .light .lead-p{color:#3A423E}
+
+  /* DARK section */
+  .dark{background:#0E1512}
+  .dark .sec-label{color:#3FB683}
+  .dark .lead-h,.dark h2{color:#F4F2EC}
+  .dark .lead-p{color:#B9C2BC}
+
+  .lead-h{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(28px,5vw,46px);line-height:1.12;letter-spacing:-.02em;max-width:760px;margin:0 auto}
+  .lead-p{font-size:17px;max-width:640px;margin:22px auto 0}
+
+  /* ===== PROJECT LAYOUT (side-by-side) ===== */
+  .proj-list{margin-top:60px;display:flex;flex-direction:column;gap:30px}
+  .proj-row{
+    background:#151D19;border:1px solid #26302B;border-radius:24px;overflow:hidden;
+    display:grid;grid-template-columns:1fr 1fr;gap:0;transition:.22s;
+  }
+  .proj-row:hover{border-color:#2E9E6F;box-shadow:0 20px 60px rgba(0,0,0,.35);transform:translateY(-3px)}
+  .proj-row.flip .proj-media{order:2}
+  .proj-row.flip .proj-body{order:1}
+  @media(max-width:820px){
+    .proj-row,.proj-row.flip{grid-template-columns:1fr}
+    .proj-row.flip .proj-media,.proj-row .proj-media{order:1}
+    .proj-row.flip .proj-body,.proj-row .proj-body{order:2}
+  }
+  .proj-media{
+    background:#FFFFFF;display:flex;align-items:center;justify-content:center;
+    padding:24px;min-height:300px;
+  }
+  .proj-media img{max-width:100%;max-height:360px;width:auto;height:auto;object-fit:contain;border-radius:8px}
+  .proj-body{padding:40px;display:flex;flex-direction:column;justify-content:center}
+  .proj-body .tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#3FB683;letter-spacing:.06em;text-transform:uppercase}
+  .proj-body h3{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(22px,2.6vw,28px);margin:14px 0 12px;letter-spacing:-.01em;color:#F4F2EC;line-height:1.15}
+  .proj-body p{color:#B9C2BC;font-size:15px;line-height:1.6}
+
+  /* result headline inside each project */
+  .proj-result{color:#F4F2EC;font-size:15.5px;line-height:1.55;margin-bottom:10px}
+  .proj-result b{color:#3FB683;font-weight:600}
+
+  /* method chips */
+  .proj-stack{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0 0}
+  .proj-stack span{font-family:'JetBrains Mono',monospace;font-size:11px;color:#9DB0A6;background:#0E1512;border:1px solid #26302B;border-radius:6px;padding:4px 9px;letter-spacing:.02em;margin:0 3px 3px 0}
+
+  /* prominent primary PDF button */
+  .proj-actions{margin-top:24px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+  .btn-pdf{
+    display:inline-flex;align-items:center;gap:10px;
+    background:#2E9E6F;color:#04140E;font-weight:600;font-size:16.5px;
+    padding:16px 30px;border-radius:14px;transition:.18s;letter-spacing:-.01em;
+    box-shadow:0 8px 24px rgba(46,158,111,.25);
+  }
+  .btn-pdf:hover{background:#3FB683;transform:translateY(-2px);box-shadow:0 12px 32px rgba(46,158,111,.35)}
+  .btn-pdf .arrow{font-size:19px;line-height:1}
+
+  /* secondary code / dataset links */
+  .proj-secondary{display:flex;gap:10px;flex-wrap:wrap}
+  .btn-sec{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:13px;font-weight:500;color:#C7D0CA;
+    background:transparent;border:1px solid #33413A;border-radius:999px;
+    padding:9px 16px;transition:.18s;font-family:'JetBrains Mono',monospace;letter-spacing:.02em;
+  }
+  .btn-sec:hover{border-color:#3FB683;color:#3FB683;background:rgba(46,158,111,.08)}
+
+  /* toolbox band (light) */
+  .toolbox{background:#FAFAF8;padding:70px 0}
+  .toolbox .sec-label{color:#1F6E4E;text-align:center}
+  .tool-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;max-width:760px;margin:26px auto 0}
+  .tool{font-size:14px;color:#0E1512;background:#FFFFFF;border:1px solid #E7E6DE;border-radius:10px;padding:10px 16px;font-weight:500;transition:.16s;margin:0 4px 4px 0}
+  .tool:hover{border-color:#1F6E4E;color:#1F6E4E}
+  .tool .k{font-family:'JetBrains Mono',monospace;font-size:11px;color:#8A8F8B;display:block;margin-bottom:2px;letter-spacing:.04em;text-transform:uppercase}
+
+  /* CONTACT (dark) */
+  .contact{text-align:center;padding:100px 0;background:#0E1512}
+  .contact .sec-label{color:#3FB683}
+  .contact h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(34px,6vw,60px);letter-spacing:-.025em;line-height:1.05;color:#F4F2EC}
+  .contact h2 em{font-style:italic;color:#3FB683}
+  .contact p{color:#B9C2BC;margin:20px auto 34px;max-width:500px;font-size:16px}
+  .interests{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:0 auto 40px;max-width:680px}
+  .chip{font-size:13.5px;color:#C7D0CA;background:#151D19;border:1px solid #26302B;border-radius:999px;padding:8px 16px}
+  .contact .btn.solid{background:#2E9E6F;color:#04140E;font-weight:600}
+  .contact .btn.solid:hover{background:#3FB683}
+  .contact .btn.line{background:transparent;border:1px solid #33413A;color:#F4F2EC}
+  .contact .btn.line:hover{border-color:#3FB683;color:#3FB683}
+
+  footer{border-top:1px solid #26302B;padding:34px 0;background:#0E1512}
+  .foot-in{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:13px;color:#7C8A82}
+  .foot-in .brand{font-family:'Fraunces',serif;font-weight:500;color:#F4F2EC}
+  .foot-in a:hover{color:#3FB683}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+  ::selection{background:#1F6E4E;color:#fff}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-in">
+    <div class="logo">Edoardo <b>Maira</b></div>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#toolbox">Toolbox</a>
+      <a href="https://www.linkedin.com/in/edoardo-maira-2049522a2/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <a class="nav-cta" href="CV_Edoardo_Maira.pdf" target="_blank" rel="noopener">Download CV</a>
+  </div>
+</nav>
+
+<!-- HERO (light) -->
+<header class="hero light">
+  <div class="wrap">
+    <div class="kicker reveal">Quantitative Finance &middot; Data Analytics</div>
+    <h1 class="reveal">I enjoy digging into finance,<br>real estate, and the <em>numbers</em><br>behind them.</h1>
+    <div class="identity reveal">Edoardo Maira &middot; MSc Advanced Economics &amp; Finance, Copenhagen Business School</div>
+    <div class="subline reveal">Four end-to-end projects in econometrics, machine learning &amp; finance.</div>
+    <div class="hero-cta reveal">
+      <a class="btn solid" href="#projects">See the projects</a>
+      <a class="btn line" href="CV_Edoardo_Maira.pdf" target="_blank" rel="noopener">&#8595;&nbsp; Download CV</a>
+    </div>
+  </div>
+</header>
+
+<!-- PROJECTS (dark) -->
+<section class="dark" id="projects">
+  <div class="wrap">
+    <div class="sec-label center reveal">Selected projects</div>
+    <div class="lead-h center reveal" style="font-size:clamp(26px,4vw,40px)">Four projects, each owned<br>end to end &mdash; data, code, conclusions.</div>
+
+    <div class="proj-list">
+
+      <!-- PROJECT 1: Machine Learning (lead with strongest quantified result) -->
+      <div class="proj-row reveal">
+        <div class="proj-media">
+          <img src="3%20Foto%20Machine%20Learnining.png" alt="ROC curves comparing six machine-learning models">
+        </div>
+        <div class="proj-body">
+          <div class="tag">Machine Learning &middot; R</div>
+          <h3>Predicting stock market participation</h3>
+          <p class="proj-result"><b>97% accuracy</b> via 5-fold cross-validation, benchmarking six classifiers on who invests in equities.</p>
+          <p>Built on the 2022 US Survey of Consumer Finances (23k households): cleaned 356 variables, resolved multicollinearity with GVIF, and compared logistic regression, classification trees, random forest, GBM, SVM (RBF) and kNN.</p>
+          <div class="proj-stack"><span>Random Forest</span><span>GBM</span><span>SVM (RBF)</span><span>GVIF</span><span>5-fold CV</span></div>
+          <div class="proj-actions">
+            <a class="btn-pdf" href="3%20Final%20project%20Machine%20Learning.pdf" target="_blank" rel="noopener">Read the full project <span class="arrow">&rarr;</span></a>
+            <div class="proj-secondary">
+              <a class="btn-sec" href="3%20Code%20Machine%20Learning.R" target="_blank" rel="noopener">&lt;/&gt; Code (R)</a>
+              <a class="btn-sec" href="3%20Dataset%20Machine%20Learning.xlsx" target="_blank" rel="noopener">&#9636; Dataset</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 2: Financial Econometrics -->
+      <div class="proj-row flip reveal">
+        <div class="proj-media">
+          <img src="1%20Foto%20financial%20econometrics.png" alt="SPX 2020 log-volume versus squared residuals">
+        </div>
+        <div class="proj-body">
+          <div class="tag">Financial Econometrics &middot; Bloomberg Terminal</div>
+          <h3>SPX vs Dow Jones: volatility &amp; lead-lag</h3>
+          <p class="proj-result"><b>14 years, ~3,500 daily obs</b> modelled with ARIMA(2,0,2) + GARCH(1,1) under t-distributed innovations.</p>
+          <p>Sourced from Bloomberg Terminals. Used Granger causality and cointegration tests to map the lead-lag dynamics between the two indices and characterise volatility clustering.</p>
+          <div class="proj-stack"><span>ARIMA(2,0,2)</span><span>GARCH(1,1)</span><span>Granger</span><span>Bloomberg</span></div>
+          <div class="proj-actions">
+            <a class="btn-pdf" href="1%20final%20project%20financial%20econometrics.pdf" target="_blank" rel="noopener">Read the full project <span class="arrow">&rarr;</span></a>
+            <div class="proj-secondary">
+              <a class="btn-sec" href="1%20Code%20financial%20econometrics.R" target="_blank" rel="noopener">&lt;/&gt; Code (R)</a>
+              <a class="btn-sec" href="1%20Dataset%20financial%20econometrics.xlsx" target="_blank" rel="noopener">&#9636; Dataset</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 3: Master's Thesis -->
+      <div class="proj-row reveal">
+        <div class="proj-media">
+          <img src="4%20Foto%20thesis.png" alt="Map of Danish municipalities coloured by housing price index">
+        </div>
+        <div class="proj-body">
+          <div class="tag">Master's Thesis &middot; Stata + R (geospatial)</div>
+          <h3>Housing bubble dynamics in Denmark</h3>
+          <p class="proj-result">A granular price index across <b>all 98 Danish municipalities</b>, tracing how housing bubbles propagate geographically.</p>
+          <p>Constructed weighted repeat-sales and hedonic indices — monthly and annual, real and nominal — on Statistics Denmark microdata, with a geospatial layer in R mapping property coordinates over time.</p>
+          <div class="proj-stack"><span>Repeat-sales</span><span>Hedonic index</span><span>Spatial econometrics</span><span>Statistics Denmark</span></div>
+          <div class="proj-actions">
+            <a class="btn-pdf" href="4%20Final%20project%20thesis.pdf" target="_blank" rel="noopener">Read the full thesis <span class="arrow">&rarr;</span></a>
+            <div class="proj-secondary">
+              <a class="btn-sec" href="4%20Code%20thesis.do" target="_blank" rel="noopener">&lt;/&gt; Code (Stata)</a>
+              <span class="btn-sec" style="cursor:default;color:#7C8A82;border-style:dashed">&#128274; Data under DST confidentiality</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 4: Behavioural Finance -->
+      <div class="proj-row flip reveal">
+        <div class="proj-media">
+          <img src="2%20Foto%20irrationality.png" alt="Risky-share distribution by gender, density plot">
+        </div>
+        <div class="proj-body">
+          <div class="tag">Behavioural Finance &middot; Qualtrics + Stata</div>
+          <h3>Gender priming &amp; financial risk-taking</h3>
+          <p class="proj-result">A <b>randomised experiment</b> measuring how gender-identity salience shifts risk-taking, from primary survey data.</p>
+          <p>Designed and ran the experiment in Qualtrics, built composite Belief and Risk-Aversion indexes, and estimated the treatment effect with OLS supported by density-plot analysis.</p>
+          <div class="proj-stack"><span>Randomised design</span><span>OLS</span><span>Composite indexes</span><span>Qualtrics</span></div>
+          <div class="proj-actions">
+            <a class="btn-pdf" href="2%20Final%20project%20irrationality.pdf" target="_blank" rel="noopener">Read the full project <span class="arrow">&rarr;</span></a>
+            <div class="proj-secondary">
+              <a class="btn-sec" href="2%20Code%20irrationality.R" target="_blank" rel="noopener">&lt;/&gt; Code (R)</a>
+              <a class="btn-sec" href="2%20Code%20irrationality" target="_blank" rel="noopener">&lt;/&gt; Code (Stata)</a>
+              <a class="btn-sec" href="2%20Dataset%20Irrationality.xlsx" target="_blank" rel="noopener">&#9636; Dataset</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TOOLBOX (light) -->
+<section class="toolbox" id="toolbox">
+  <div class="wrap">
+    <div class="sec-label reveal">Toolbox</div>
+    <div class="tool-grid reveal">
+      <span class="tool"><span class="k">Language</span>Stata</span>
+      <span class="tool"><span class="k">Language</span>R / RStudio</span>
+      <span class="tool"><span class="k">Language</span>C++</span>
+      <span class="tool"><span class="k">Data</span>Bloomberg Terminal</span>
+      <span class="tool"><span class="k">Data</span>SAS Visual Analytics</span>
+      <span class="tool"><span class="k">Docs</span>LaTeX</span>
+      <span class="tool"><span class="k">Office</span>Excel (advanced)</span>
+      <span class="tool"><span class="k">Methods</span>Econometrics</span>
+      <span class="tool"><span class="k">Methods</span>Machine Learning</span>
+      <span class="tool"><span class="k">Methods</span>Time-series &amp; GARCH</span>
+      <span class="tool"><span class="k">Methods</span>Spatial econometrics</span>
+      <span class="tool"><span class="k">Spoken</span>Italian &middot; English C1 &middot; Danish (learning)</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT (dark) -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="sec-label reveal">Get in touch</div>
+    <h2 class="reveal">Let's talk about<br>your <em>numbers.</em></h2>
+    <p class="reveal">Open to roles in quantitative analysis, data science, and finance across the Nordics. Copenhagen-based.</p>
+    <div class="interests reveal">
+      <span class="chip">Econometrics</span><span class="chip">Machine learning</span><span class="chip">Financial markets</span><span class="chip">Data quality</span><span class="chip">Housing &amp; macro</span><span class="chip">Behavioural finance</span>
+    </div>
+    <div class="hero-cta reveal">
+      <a class="btn solid" href="mailto:edoardo.maira@outlook.com">edoardo.maira@outlook.com</a>
+      <a class="btn line" href="https://www.linkedin.com/in/edoardo-maira-2049522a2/" target="_blank" rel="noopener">LinkedIn &rarr;</a>
+      <a class="btn line" href="CV_Edoardo_Maira.pdf" target="_blank" rel="noopener">Download CV</a>
+      <a class="btn line" href="recommendation-letter.pdf" target="_blank" rel="noopener">Recommendation letter</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <span class="brand">Edoardo Maira</span>
+    <span>Copenhagen, Denmark &middot; <a href="mailto:edoardo.maira@outlook.com">edoardo.maira@outlook.com</a> &middot; &copy; 2026</span>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
